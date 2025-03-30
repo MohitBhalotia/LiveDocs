@@ -39,7 +39,6 @@ A modern, real-time collaborative document editor built with Next.js, featuring 
 | **Styling** | Tailwind CSS |
 | **UI Components** | Radix UI |
 | **Language** | TypeScript |
-| **State Management** | React |
 
 ## Project Structure
 
