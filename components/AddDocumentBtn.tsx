@@ -6,15 +6,15 @@ import { createDocument } from "@/lib/actions/room.actions";
 import { useRouter } from "next/navigation";
 
 const AddDocumentBtn = ({ userId, email }: AddDocumentBtnProps) => {
-    const router=useRouter()
+  const router = useRouter()
   const addDocumentHandler = async () => {
     try {
-        const room =await createDocument({userId,email})
-        if(room){
-            router.push(`/documents/${room.id}`)
-        }
-    } catch (error) {
-        
+      const room = await createDocument({ userId, email })
+      if (room) {
+        router.push(`/documents/${room.id}`)
+      }
+    } catch (_error) {
+      // Handle error if needed
     }
   };
   return (
