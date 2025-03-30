@@ -33,7 +33,6 @@ import {
   useEffect,
   useRef,
   useState,
-  useSyncExternalStore,
 } from 'react';
 
 const LowPriority = 1;

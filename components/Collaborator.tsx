@@ -9,24 +9,23 @@ const Collaborator = ({
   roomId,
   creatorId,
   collaborator,
-  email,
   user,
 }: CollaboratorProps) => {
   const [userType, setUserType] = useState(collaborator.userType || "viewer");
   const [loading, setLoading] = useState(false);
-  const shareDocumentHandler = async (type: String) => {
+  const shareDocumentHandler = async (type: string) => {
     setLoading(true);
     await updateDocumentAccess({
       roomId,
-      email,
+      email: collaborator.email,
       userType: type as UserType,
       updatedBy: user,
     });
     setLoading(false);
   };
-  const removeCollaboratorHandler = async (email: string) => {
+  const removeCollaboratorHandler = async () => {
     setLoading(true);
-        
+    // ... rest of the code ...
     setLoading(false);
   };
   return (
@@ -63,7 +62,7 @@ const Collaborator = ({
           />
           <Button
             type="button"
-            onClick={() => removeCollaboratorHandler(collaborator.email)}
+            onClick={removeCollaboratorHandler}
           >
             Remove
           </Button>
