@@ -13,7 +13,7 @@ const AddDocumentBtn = ({ userId, email }: AddDocumentBtnProps) => {
       if (room) {
         router.push(`/documents/${room.id}`)
       }
-    } catch (_error) {
+    } catch {
       // Handle error if needed
     }
   };
