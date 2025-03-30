@@ -3,16 +3,16 @@
 import Loader from "@/components/Loader";
 import { getClerkUsers, getDocumentUsers } from "@/lib/actions/user.actions";
 import { useUser } from "@clerk/nextjs";
-import { EmailAddress } from "@clerk/nextjs/server";
 import {
   LiveblocksProvider,
-  RoomProvider,
   ClientSideSuspense,
 } from "@liveblocks/react/suspense";
 import { ReactNode } from "react";
 
 const Provider = ({ children }: { children: ReactNode }) => {
   const { user: clerkUser } = useUser();
+  const userEmail = clerkUser?.emailAddresses[0]?.emailAddress;
+
   return (
     <LiveblocksProvider
       authEndpoint="/api/liveblocks-auth"
@@ -21,9 +21,10 @@ const Provider = ({ children }: { children: ReactNode }) => {
         return users;
       }}
       resolveMentionSuggestions={async ({ text, roomId }) => {
+        if (!userEmail) return [];
         const roomUsers = await getDocumentUsers({
           roomId,
-          currentUser: clerkUser?.emailAddresses[0].emailAddress!,
+          currentUser: userEmail,
           text,
         });
         return roomUsers;

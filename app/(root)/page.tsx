@@ -1,5 +1,5 @@
 import AddDocumentBtn from '@/components/AddDocumentBtn';
-import {DeleteModal}  from '@/components/DeleteModal';
+import { DeleteModal } from '@/components/DeleteModal';
 import Header from '@/components/Header'
 import Notifications from '@/components/Notifications';
 // import Notifications from '@/components/Notifications';
@@ -12,9 +12,18 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
+interface DocumentData {
+  id: string;
+  metadata: {
+    title: string;
+    [key: string]: unknown;
+  };
+  createdAt: string;
+}
+
 const Home = async () => {
   const clerkUser = await currentUser();
-  if(!clerkUser) redirect('/sign-in');
+  if (!clerkUser) redirect('/sign-in');
 
   const roomDocuments = await getDocuments(clerkUser.emailAddresses[0].emailAddress);
 
@@ -33,17 +42,17 @@ const Home = async () => {
         <div className="document-list-container">
           <div className="document-list-title">
             <h3 className="text-28-semibold">All documents</h3>
-            <AddDocumentBtn 
+            <AddDocumentBtn
               userId={clerkUser.id}
               email={clerkUser.emailAddresses[0].emailAddress}
             />
           </div>
           <ul className="document-ul mt-8">
-            {roomDocuments.data.map(({ id, metadata, createdAt }: any) => (
+            {roomDocuments.data.map(({ id, metadata, createdAt }: DocumentData) => (
               <li key={id} className="document-list-item my-2">
                 <Link href={`/documents/${id}`} className="flex flex-1 items-center gap-4 p-2">
                   <div className="hidden rounded-md bg-dark-500 p-2 mr-2 sm:block py-2 ">
-                    <Image 
+                    <Image
                       src="/assets/icons/doc.svg"
                       alt="file"
                       width={40}
@@ -60,9 +69,9 @@ const Home = async () => {
             ))}
           </ul>
         </div>
-      ): (
+      ) : (
         <div className="document-list-empty">
-          <Image 
+          <Image
             src="/assets/icons/doc.svg"
             alt="Document"
             width={40}
@@ -70,7 +79,7 @@ const Home = async () => {
             className="mx-auto"
           />
 
-          <AddDocumentBtn 
+          <AddDocumentBtn
             userId={clerkUser.id}
             email={clerkUser.emailAddresses[0].emailAddress}
           />
