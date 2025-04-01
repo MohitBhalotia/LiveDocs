@@ -1,12 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  typescript:{
-    ignoreBuildErrors:true
+  typescript: {
+    ignoreBuildErrors: true,
   },
   images: {
     remotePatterns: [{ protocol: "https", hostname: "img.clerk.com" }],
   },
+  devIndicators: false,
 };
 
 export default nextConfig;

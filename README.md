@@ -15,6 +15,12 @@ A modern, real-time collaborative document editor built with Next.js, featuring 
 
 </div>
 
+## 📽️ Demo Video
+
+Check out the full demo of LiveDocs on [YouTube](https://youtu.be/jVL9EE17NxY).
+
+[![Watch the video](https://img.youtube.com/vi/jVL9EE17NxY/0.jpg)](https://www.youtube.com/watch?v=jVL9EE17NxY)
+
 ## Features
 
 
@@ -133,6 +139,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 <div align="center">
 
-Made with ❤️ by Mohit Bhalotia
+Made by Mohit Bhalotia
 
 </div>
